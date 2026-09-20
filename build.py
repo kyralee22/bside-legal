@@ -1,29 +1,43 @@
 #!/usr/bin/env python3
-"""Regenerate index.html from privacy.md.
+"""Regenerate the published HTML from the Markdown sources.
 
-Run after editing privacy.md, then commit both:
+    privacy.md -> index.html          (https://kyralee22.github.io/bside-legal/)
+    support.md -> support/index.html  (https://kyralee22.github.io/bside-legal/support/)
+
+Run after editing either source, then commit everything it writes:
 
     pip3 install --user markdown
-    python3 build.py && git commit -am "Update privacy policy" && git push
+    python3 build.py && git commit -am "Update legal pages" && git push
 """
 import re, html, pathlib
 import markdown
 
 HERE = pathlib.Path(__file__).parent
-src = (HERE / "privacy.md").read_text()
 
-body = markdown.markdown(src, extensions=["tables", "sane_lists"])
-body = re.sub(r"^<h1>.*?</h1>\s*", "", body, count=1, flags=re.S)
-body = re.sub(r"^<p><strong>Last updated:.*?</strong></p>\s*", "", body, count=1, flags=re.S)
-updated = re.search(r"\*\*Last updated: (.+?)\*\*", src).group(1)
+PAGES = [
+    {
+        "src": "privacy.md",
+        "out": "index.html",
+        "title": "Privacy Policy",
+        "heading": "Privacy Policy",
+        "description": "How the BSIDE concert-logging app collects, uses, and shares your information.",
+    },
+    {
+        "src": "support.md",
+        "out": "support/index.html",
+        "title": "Support",
+        "heading": "Support",
+        "description": "Help, contact, and answers to common questions about the BSIDE concert-logging app.",
+    },
+]
 
 TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Privacy Policy — BSIDE</title>
-<meta name="description" content="How the BSIDE concert-logging app collects, uses, and shares your information.">
+<title>{title} — BSIDE</title>
+<meta name="description" content="{description}">
 <style>
   :root {{
     --bg: #faf9f7; --surface: #ffffff; --ink: #1a1a1a; --muted: #5c5c5c;
@@ -69,8 +83,8 @@ TEMPLATE = """<!DOCTYPE html>
 <div class="wrap">
   <header>
     <p class="brand">BSIDE</p>
-    <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: {updated}</p>
+    <h1>{heading}</h1>
+{subtitle}
   </header>
   <main>
 {body}
@@ -83,7 +97,30 @@ TEMPLATE = """<!DOCTYPE html>
 </html>
 """
 
-page = TEMPLATE.format(updated=html.escape(updated), body=body)
-page = page.replace("<table>", '<div class="table-scroll"><table>').replace("</table>", "</table></div>")
-(HERE / "index.html").write_text(page)
-print(f"index.html regenerated ({len(page)} bytes)")
+for spec in PAGES:
+    src = (HERE / spec["src"]).read_text()
+
+    body = markdown.markdown(src, extensions=["tables", "sane_lists"])
+    body = re.sub(r"^<h1>.*?</h1>\s*", "", body, count=1, flags=re.S)
+    body = re.sub(r"^<p><strong>Last updated:.*?</strong></p>\s*", "", body, count=1, flags=re.S)
+
+    # Only the policy carries a date; everything else gets no subtitle line.
+    stamp = re.search(r"\*\*Last updated: (.+?)\*\*", src)
+    subtitle = (
+        f'    <p class="updated">Last updated: {html.escape(stamp.group(1))}</p>'
+        if stamp else ""
+    )
+
+    page = TEMPLATE.format(
+        title=html.escape(spec["title"]),
+        heading=html.escape(spec["heading"]),
+        description=html.escape(spec["description"]),
+        subtitle=subtitle,
+        body=body,
+    )
+    page = page.replace("<table>", '<div class="table-scroll"><table>').replace("</table>", "</table></div>")
+
+    out = HERE / spec["out"]
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(page)
+    print(f"{spec['out']} regenerated ({len(page)} bytes)")
