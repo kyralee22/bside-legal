@@ -69,8 +69,9 @@ sentence text only** to OpenRouter, an AI routing service, which passes it to th
 provider (currently OpenAI). The model's only job is to pull structured details — artist, venue,
 city, date — out of your sentence so we can find the right show.
 
-- Your identity is **not** sent with it. The request contains the sentence and nothing else: no
-  username, no email, no account ID, no device identifier.
+- Your identity is **not** forwarded to OpenRouter. Your app is signed in to our server as usual,
+  so we know which account made the request, but what we pass onward is the sentence and nothing
+  else: no username, no email, no account ID, no device identifier.
 - We do not store the sentence in our database. The extracted details are used to search for a
   matching show and are then discarded.
 - Once the sentence reaches OpenRouter and the model provider, their own retention and logging
