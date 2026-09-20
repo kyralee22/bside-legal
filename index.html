@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — BSIDE</title>
+<meta name="description" content="How the BSIDE concert-logging app collects, uses, and shares your information.">
+<style>
+  :root {
+    --bg: #faf9f7; --surface: #ffffff; --ink: #1a1a1a; --muted: #5c5c5c;
+    --line: #e2e0dc; --accent: #2b4cd6; --code-bg: #f1efec;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121110; --surface: #1a1918; --ink: #ece9e4; --muted: #a09b94;
+      --line: #2e2c29; --accent: #8fa4ff; --code-bg: #232120;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #121110; --surface: #1a1918; --ink: #ece9e4; --muted: #a09b94;
+    --line: #2e2c29; --accent: #8fa4ff; --code-bg: #232120;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 46rem; margin: 0 auto; padding: 0 16px 6rem; }
+  header { padding: 3.5rem 0 2rem; border-bottom: 1px solid var(--line); margin-bottom: 2.5rem; }
+  .brand {
+    font-size: .75rem; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--muted); margin: 0 0 .75rem;
+  }
+  h1 { font-size: 2.1rem; line-height: 1.15; margin: 0 0 .6rem; letter-spacing: -.015em; }
+  .updated { color: var(--muted); font-size: .9rem; margin: 0; }
+  h2 {
+    font-size: 1.3rem; margin: 2.75rem 0 .85rem; letter-spacing: -.01em;
+    padding-top: 1.25rem; border-top: 1px solid var(--line);
+  }
+  h2:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
+  p, li { color: var(--ink); }
+  ul { padding-left: 1.25rem; }
+  li { margin: .4rem 0; }
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  strong { font-weight: 650; }
+  hr { border: 0; border-top: 1px solid var(--line); margin: 2rem 0; }
+  code {
+    background: var(--code-bg); padding: .12em .4em; border-radius: 3px;
+    font-size: .88em; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  .table-scroll { overflow-x: auto; margin: 1.25rem 0; -webkit-overflow-scrolling: touch; }
+  table { border-collapse: collapse; width: 100%; min-width: 34rem; font-size: .93rem; }
+  th, td { text-align: left; padding: .7rem .8rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th {
+    font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--muted); font-weight: 600; background: var(--surface);
+  }
+  footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .875rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="brand">BSIDE</p>
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: September 20, 2026</p>
+  </header>
+  <main>
+<p>BSIDE is an app for logging the concerts and festivals you go to. This policy explains what
+information the app collects, why, who it is shared with, and how you can get rid of it.</p>
+<p>We try to ask for as little as possible. Where we could have requested more access and chose not
+to, this policy says so explicitly.</p>
+<p>If anything here is unclear, email <strong>bsideworkapp@gmail.com</strong>.</p>
+<hr />
+<h2>Information you give us</h2>
+<p><strong>Account information.</strong> To create an account you provide an email address, a password, and a
+username. That is the entire signup form — we do not ask for your real name, date of birth, phone
+number, or gender. Passwords are handled by our authentication provider (Supabase) and are stored
+as salted hashes; we never see or store your plain-text password.</p>
+<p><strong>Profile information.</strong> Optionally: a display name, a short bio, and a profile picture.</p>
+<p><strong>Content you create.</strong> The shows you log and everything attached to them — your rating, liner
+notes, best song, the date and venue, any lists or superlatives you build, and the other BSIDE
+users you tag as having been there with you.</p>
+<p><strong>Photos.</strong> If you add a profile picture or attach photos to a logged show, those images are
+uploaded to our storage provider.</p>
+<ul>
+<li>BSIDE does <strong>not</strong> request access to your photo library. When you pick an image, iOS shows you
+  its own picker and hands us only the specific images you chose — the app never receives, and
+  cannot browse, the rest of your library.</li>
+<li>The app asks for camera permission only if you choose "Take Photo" for a profile picture.</li>
+<li>Before any image is uploaded it is re-encoded, which <strong>strips embedded metadata</strong> including the
+  GPS coordinates, device model, and timestamp that cameras normally write into photo files.</li>
+</ul>
+<p><strong>Search text.</strong> When you log a show by typing a sentence like "Phoebe Bridgers at the Greek in
+2022," that sentence is processed to pull out the artist, venue, city, and date. See
+<strong>AI-assisted search</strong> below.</p>
+<p><strong>Social connections.</strong> Who you follow and who follows you.</p>
+<h2>Information collected automatically</h2>
+<p><strong>Approximate location (optional).</strong> If you grant location permission, BSIDE requests your location
+at <strong>reduced accuracy</strong>. This is not a promise about how we handle a precise coordinate — it means
+the app is built so that iOS never gives it one. The system deliberately fuzzes your position
+before the app ever sees it, and iOS will show your location as approximate rather than precise.</p>
+<p>We use it to show concerts happening near you and to identify your city. Before your coordinates
+are sent onward to Ticketmaster, we round them further, to roughly a one-kilometer grid. We do not
+store a history of your locations, and we do not request or use background location — the app can
+only see where you are while you are using it. The app works without this permission; you simply
+won't see the "near you" features.</p>
+<p><strong>Basic technical data.</strong> Our hosting provider records standard server logs (IP address, timestamp,
+request path) as part of operating the service.</p>
+<p><strong>What we deliberately do not collect.</strong> BSIDE contains no analytics SDK, no advertising SDK, and
+no third-party tracking or attribution libraries of any kind. We do not use the Advertising
+Identifier, we do not ask for App Tracking Transparency permission, and we never request access to
+your contacts, calendar, microphone, health data, or music library.</p>
+<h2>AI-assisted search</h2>
+<p>When you log a show by typing a sentence, that sentence is sent to our server, which forwards <strong>the
+sentence text only</strong> to OpenRouter, an AI routing service, which passes it to the underlying model
+provider (currently OpenAI). The model's only job is to pull structured details — artist, venue,
+city, date — out of your sentence so we can find the right show.</p>
+<ul>
+<li>Your identity is <strong>not</strong> sent with it. The request contains the sentence and nothing else: no
+  username, no email, no account ID, no device identifier.</li>
+<li>We do not store the sentence in our database. The extracted details are used to search for a
+  matching show and are then discarded.</li>
+<li>Once the sentence reaches OpenRouter and the model provider, their own retention and logging
+  practices apply. See <a href="https://openrouter.ai/privacy">OpenRouter's privacy policy</a>.</li>
+<li>The feature is optional. You can skip it entirely by using the manual entry option or ordinary
+  search, and nothing is sent anywhere.</li>
+</ul>
+<p>Please avoid typing anything into that box you would not want processed by an outside AI service.</p>
+<h2>Spotify (optional)</h2>
+<p>If you choose to connect Spotify, you are sent to Spotify to authorize the connection. BSIDE
+requests a <strong>single permission: read your top artists</strong> (<code>user-top-read</code>). We do not request access
+to your listening history, your saved library, your playlists, or playback control, and we cannot
+post anything to your account.</p>
+<p>The import is <strong>one-time</strong>. We exchange the authorization for a short-lived token, read your top
+artists, and then discard the token. BSIDE stores no Spotify credentials of any kind — no password,
+no access token, no refresh token — so we have no standing ability to read your Spotify account.
+Refreshing your top artists requires you to authorize again.</p>
+<p>From that import we keep <strong>only your top artists</strong> — artist names, Spotify artist IDs, artist
+images, and genres — to display your "top rotation" on your profile and to help you find people
+with similar taste. We also count top-artist data across all users in aggregate to show which
+artists are popular on BSIDE; this is counted in bulk and is not presented as "this specific person
+listens to X."</p>
+<p>You can disconnect Spotify at any time from your profile, which deletes the stored artists, and
+revoke BSIDE's access directly at
+<a href="https://www.spotify.com/account/apps">spotify.com/account/apps</a>.</p>
+<h2>What we do NOT do</h2>
+<ul>
+<li>We do <strong>not</strong> sell your personal information.</li>
+<li>We do <strong>not</strong> share your information with advertisers, and the app contains no ads.</li>
+<li>We do <strong>not</strong> use third-party analytics, advertising, or tracking SDKs.</li>
+<li>We do <strong>not</strong> track you across other apps or websites.</li>
+<li>We do <strong>not</strong> use your content to train AI models.</li>
+</ul>
+<h2>What other people can see</h2>
+<p>BSIDE is a social app, so some information is visible to others by design:</p>
+<ul>
+<li>Your username, display name, bio, profile picture, and profile statistics.</li>
+<li>The shows you log, your ratings, your written notes, your lists, and your superlatives.</li>
+<li>Who you follow and who follows you.</li>
+<li>If you tag another user as having attended a show with you, that user and people viewing that
+  log can see the tag.</li>
+</ul>
+<p><strong>Please treat everything you post as public.</strong> BSIDE does not currently offer a private-profile
+mode; if we add one, we will update this policy.</p>
+<p><strong>Images are publicly accessible.</strong> Profile pictures and concert photos are stored in public
+storage buckets, which means anyone with the direct image URL can open it. Do not upload images you
+would not be comfortable being publicly accessible.</p>
+<h2>Who we share information with</h2>
+<p>We use a small number of service providers to run the app. They process data on our behalf:</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>What they receive</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Supabase</strong></td>
+<td>Account credentials, profile, logs, photos</td>
+<td>Hosting, authentication, database, file storage</td>
+</tr>
+<tr>
+<td><strong>OpenRouter</strong> (and the model provider it routes to, currently <strong>OpenAI</strong>)</td>
+<td>The text of a search sentence, with no identifying information</td>
+<td>Extracting artist / venue / date from what you typed</td>
+</tr>
+<tr>
+<td><strong>Spotify</strong></td>
+<td>A one-time authorization request</td>
+<td>Only if you connect Spotify</td>
+</tr>
+<tr>
+<td><strong>Ticketmaster</strong></td>
+<td>Coordinates rounded to roughly a one-kilometer grid</td>
+<td>To return concerts near you</td>
+</tr>
+<tr>
+<td><strong>Setlist.fm</strong></td>
+<td>Artist / show search terms</td>
+<td>To look up show and setlist data</td>
+</tr>
+<tr>
+<td><strong>Apple</strong></td>
+<td>Purchase and download data</td>
+<td>App Store distribution</td>
+</tr>
+</tbody>
+</table></div>
+<p>We may also disclose information if required by law, or to protect the rights, safety, or property
+of BSIDE or its users.</p>
+<h2>Data retention and deletion</h2>
+<p>We keep your information for as long as your account exists.</p>
+<p>You can delete your account at any time from <strong>Profile → Settings → Delete Account</strong>. Deleting your
+account removes your profile, your logs, your lists, your Spotify top artists, and your uploaded
+images. Some content may remain briefly in backups before being overwritten. Aggregated statistics
+that cannot identify you may be retained.</p>
+<h2>Security</h2>
+<p>Data is transmitted over encrypted connections (HTTPS/TLS). Your login tokens are stored in the iOS
+Keychain rather than ordinary app storage. Data is stored with our hosting provider using access
+rules that restrict rows to their owner, and third-party API keys are held server-side rather than
+inside the app. No system is perfectly secure, and we cannot guarantee absolute security, but we
+work to protect your information using industry-standard measures.</p>
+<h2>Children</h2>
+<p>BSIDE is not directed at children under 13, and we do not knowingly collect personal information
+from children under 13. If you believe a child has provided us with personal information, contact
+us and we will delete it.</p>
+<h2>Your rights</h2>
+<p>Depending on where you live, you may have the right to access, correct, export, or delete your
+personal information, and to object to or restrict certain processing. Most of this is available
+directly in the app — you can edit your profile, edit or delete individual logs, disconnect
+Spotify, and delete your account. For anything else, email us at <strong>bsideworkapp@gmail.com</strong> and we
+will respond within 30 days.</p>
+<p>If you are in the EEA or UK, our legal bases for processing are: performing our contract with you
+(operating your account), your consent (location, Spotify, camera), and our legitimate interests
+(keeping the service secure and functional).</p>
+<p>California residents: we do not sell or share personal information as those terms are defined by
+the CCPA/CPRA.</p>
+<h2>International users</h2>
+<p>BSIDE is operated from the United States and our service providers store data in the United States.
+If you use the app from elsewhere, your information will be transferred to and processed in the
+United States.</p>
+<h2>Changes to this policy</h2>
+<p>If we make material changes to this policy, we will update the date at the top and, where
+appropriate, notify you in the app. Continued use of BSIDE after a change means you accept the
+updated policy.</p>
+<h2>Contact</h2>
+<p>Questions, requests, or complaints: <strong>bsideworkapp@gmail.com</strong></p>
+  </main>
+  <footer>
+    <p>BSIDE — a place to log the shows you go to. Questions: <a href="mailto:bsideworkapp@gmail.com">bsideworkapp@gmail.com</a></p>
+  </footer>
+</div>
+</body>
+</html>
