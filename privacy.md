@@ -137,8 +137,11 @@ We use a small number of service providers to run the app. They process data on 
 | **OpenRouter** (and the model provider it routes to, currently **OpenAI**) | The text of a search sentence, with no identifying information | Extracting artist / venue / date from what you typed |
 | **Spotify** | A one-time authorization request | Only if you connect Spotify |
 | **Ticketmaster** | Coordinates rounded to roughly a one-kilometer grid | To return concerts near you |
-| **Setlist.fm** | Artist / show search terms | To look up show and setlist data |
 | **Apple** | Purchase and download data | App Store distribution |
+
+Our catalogue of artists, venues, and past shows is compiled in advance from public music
+databases such as Setlist.fm and MusicBrainz. That happens on our own servers, before you ever
+search — your searches are not sent to those services.
 
 We may also disclose information if required by law, or to protect the rights, safety, or property
 of BSIDE or its users.
