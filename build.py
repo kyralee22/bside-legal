@@ -3,6 +3,7 @@
 
     privacy.md -> index.html          (https://kyralee22.github.io/bside-legal/)
     support.md -> support/index.html  (https://kyralee22.github.io/bside-legal/support/)
+    terms.md   -> terms/index.html    (https://kyralee22.github.io/bside-legal/terms/)
 
 Run after editing either source, then commit everything it writes:
 
@@ -28,6 +29,13 @@ PAGES = [
         "title": "Support",
         "heading": "Support",
         "description": "Help, contact, and answers to common questions about the BSIDE concert-logging app.",
+    },
+    {
+        "src": "terms.md",
+        "out": "terms/index.html",
+        "title": "Terms of Use",
+        "heading": "Terms of Use",
+        "description": "The rules for using the BSIDE concert-logging app, including its zero-tolerance content policy.",
     },
 ]
 
@@ -102,12 +110,12 @@ for spec in PAGES:
 
     body = markdown.markdown(src, extensions=["tables", "sane_lists"])
     body = re.sub(r"^<h1>.*?</h1>\s*", "", body, count=1, flags=re.S)
-    body = re.sub(r"^<p><strong>Last updated:.*?</strong></p>\s*", "", body, count=1, flags=re.S)
+    body = re.sub(r"^<p><strong>(?:Last updated|Effective date):.*?</strong></p>\s*", "", body, count=1, flags=re.S)
 
-    # Only the policy carries a date; everything else gets no subtitle line.
-    stamp = re.search(r"\*\*Last updated: (.+?)\*\*", src)
+    # Pages that carry a date get it as a subtitle; the rest get no subtitle line.
+    stamp = re.search(r"\*\*(Last updated|Effective date): (.+?)\*\*", src)
     subtitle = (
-        f'    <p class="updated">Last updated: {html.escape(stamp.group(1))}</p>'
+        f'    <p class="updated">{stamp.group(1)}: {html.escape(stamp.group(2))}</p>'
         if stamp else ""
     )
 
